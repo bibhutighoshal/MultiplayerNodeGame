@@ -1,0 +1,20 @@
+
+
+<canvas height="500" width="500" id="ctx" style="{border:1px solid #000000}"></canvas>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+  var ctx = document.getElementById("ctx").getContext("2d");
+  ctx.font="30px arial";
+  var clientsocket = io();
+
+  clientsocket.on("newPostion",(data)=>{
+    ctx.clearRect(0,0,500,500);
+
+    for(var i =0;i<data.length;i++)
+    {
+
+      ctx.fillText(data[i].value,data[i].x,data[i].y);
+    }
+
+  });
+  </script>
